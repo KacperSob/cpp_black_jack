@@ -1,8 +1,14 @@
-﻿#include "mainloop.h"
+﻿#include "test.h"
 
 int main()
 {
 	srand(time(0));
+	/*
+	running tests
+	runAllTests();
+	Sleep(8000);
+	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+	*/
 	Player *gracz = new(Player);
 	Sleep(252);
 	Player *krupier = new(Player);
