@@ -1,6 +1,6 @@
 #include "game.h"
 
-int16_t gra(Player* gracz, Player* krupier, int16_t bet) {
+int16_t gra(Player* gracz, Player* krupier, int16_t* bet) {
 	std::string kartyWys; // string kart wyswietlanych
 	int16_t wybor = 0;
 
@@ -10,7 +10,7 @@ int16_t gra(Player* gracz, Player* krupier, int16_t bet) {
 	std::cout << std::endl;
 	do
 	{
-		std::cout << "1 - hit, 2 - stand\n";
+		std::cout << "1 - hit, 2 - stand, 3 - double 4 - split\n";
 		std::cin >> wybor;
 		if (wybor == 1) {
 			gracz->hit();
@@ -18,8 +18,22 @@ int16_t gra(Player* gracz, Player* krupier, int16_t bet) {
 		}
 		else if (wybor == 2) {
 			return 1;
+		} else if (wybor == 3) {
+			if(gracz->pieniadze >= *bet){
+				gracz->hit();
+				*bet *= 2;
+				std::cout << "Your bet now is: " << *bet << std::endl;
+				std::cout << "Your cards: " << kartyWys;
+				for (auto i = gracz->karty.begin(); i != gracz->karty.end(); ++i)
+				std::cout << pokazKarte(*i) << " ";
+				std::cout << std::endl;
+				return 1;
+			} else {
+				std::cout << "You don't have enough money!" << std::endl;
+				wybor = 0;
+			}
 		}
-	} while (wybor != 1 && wybor != 2);
+	} while (wybor != 1 && wybor != 2 && wybor != 3);
 }
 int16_t check(Player* gracz) {
 	int16_t sum = 0;
