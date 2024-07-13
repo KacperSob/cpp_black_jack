@@ -1,6 +1,8 @@
 ﻿#include "game.h"
 #include <windows.h>
 
+void mainLoop(Player *gracz, Player *krupier, int16_t bet, int16_t stand);
+
 int main()
 {
 	srand(time(0));
@@ -12,7 +14,20 @@ int main()
 
 	while (gracz->pieniadze > 0) //Main while loop (update)
 	{
-		do
+		mainLoop(gracz, krupier, bet, stand);	
+	}
+
+	std::cout << "\nYou went bankrupt. Game over :c";
+	delete(gracz);
+	gracz = nullptr;
+	delete(krupier);
+	krupier = nullptr;
+	Sleep(5000);
+	return 0;
+}
+
+void mainLoop(Player *gracz, Player *krupier, int16_t bet, int16_t stand){
+	do
 		{
 			std::cout << "Place your bet, you have " << gracz->pieniadze << "$: ";
 			std::cin >> bet;
@@ -64,12 +79,4 @@ int main()
 		krupier->hit();
 		krupier->hit();
 		Sleep(2000); // Time before another round
-	}
-	std::cout << "\nYou went bankrupt. Game over :c";
-	delete(gracz);
-	gracz = nullptr;
-	delete(krupier);
-	krupier = nullptr;
-	Sleep(5000);
-	return 0;
 }
