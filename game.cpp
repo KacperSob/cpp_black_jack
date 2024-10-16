@@ -1,13 +1,5 @@
 #include "game.h"
 
-/*
-If you're reading this shit god bless your soul
-I want to fucking cry :C
-*/
-
-
-
-
 int16_t gra(Player* gracz, Player* krupier, int16_t* bet,  std::vector<std::vector<int16_t>>* decks) {
 	std::string kartyWys; // string kart wyswietlanych
 	int16_t wybor = 0;
